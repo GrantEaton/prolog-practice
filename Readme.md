@@ -1,4 +1,4 @@
-Prolog Practice building the following functions:
+Prolog Practice building the following functions (in hw3S17.pl):
  
 (10/5) isSorted(L) - succeeds if the flat list of number is in ascending order
 isSorted([1,2,3,4]).		% should succeed
