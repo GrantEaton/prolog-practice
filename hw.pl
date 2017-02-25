@@ -1,9 +1,16 @@
 % The name and number of parameters to the following rules should not be changed.
 % You can add extra rules and change parameters (e.g., replace S1 with [H1|T1].
+isSorted([]).
+isSorted([H]).
+isSorted([H|[L|T]]) :- H =< L, isSorted([L|T]).
 
-isSorted(L) :- !.
-
-removeKth(K, L, O) :- L=O. 
+removeKth(K,L,O) :- removeKthH(K,[],L,O).
+removeKthH(1, A, [_|T], O) :- append(A, T, O).
+		%removeKthH(0, A, T, D) . 
+removeKthH(K, A, [H|L], O) :- K > 1,
+		append(A,[H],B),	
+		K1 is K-1, 
+		removeKthH(K1, B, L, O). 
 
 union(S1, S2, []).
 
@@ -14,8 +21,6 @@ zip(L1, L2, O) :- append(L1, L2, O).
 binaryLists(Zeros, Ones, O) :- append([Zeros], [Ones], O).
 
 unique(L, O).
-
-nQueens(BRD).
 
 % Note, the edges are bidirectional.
 % If new cities are added, or connections are created, I will add the appropriate
