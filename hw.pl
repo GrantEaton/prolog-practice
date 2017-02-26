@@ -27,12 +27,16 @@ checkVal([H|_],V) :- H =:= V.
 checkVal([H|L],V) :- H =\= V, checkVal(L,V).
 
 
-
 quad(A, B, C, R):- Sqrt is sqrt(B*B - 4*A*C),
 X is (-B + Sqrt)/(2*A), X1 is (-B - Sqrt)/(2*A),
 append([X],[X1], R).
 
-zip(L1, L2, O) :- append(L1, L2, O).
+
+zip(L1, L, O) :- zip(L, L1, [], O). 
+zip([H1], [H], R, O) :- append([H1],[H],Z), append(R,[Z], O).
+zip([H1|L1], [H|L], R, O) :- append([H1],[H], A),
+		append( R, [A], R1),
+		zip(L1,L,R1,O).
 
 binaryLists(Zeros, Ones, O) :- append([Zeros], [Ones], O).
 
