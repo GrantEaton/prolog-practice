@@ -28,7 +28,9 @@ checkVal([H|L],V) :- H =\= V, checkVal(L,V).
 
 
 
-quad(A, B, C, [1, 2]).
+quad(A, B, C, R):- Sqrt is sqrt(B*B - 4*A*C),
+X is (-B + Sqrt)/(2*A), X1 is (-B - Sqrt)/(2*A),
+append([X],[X1], R).
 
 zip(L1, L2, O) :- append(L1, L2, O).
 
