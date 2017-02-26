@@ -21,7 +21,6 @@ addVals([H|L], S, R) :- \+ checkVal(S,H),
 addVals([H|L], S, R) :- checkVal(S,H), 
 		addVals(L, S, R).
 
-
 checkVal([H|_],V) :- H == V.
 checkVal([H|L],V) :- H \= V, checkVal(L,V).
 
