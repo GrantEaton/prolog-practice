@@ -38,6 +38,7 @@
 	* unique([1,1,2,3,3,3,4,1,1,4,4,5], L).	% should bind L to [1,2,3,4,1,4,5]
 
 ```canReach(City1, City2).```
+- Check if two Cities can reach one another
 	* canReach(oxford, toledo).		% should succeed
 	* canReach(toledo, oxford).		% should succeed
 	* canReach(cincinnati, dallas).	% should fail
