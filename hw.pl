@@ -11,20 +11,19 @@ removeKthH(K, A, [H|L], O) :- K > 1,
 		K1 is K-1, 
 		removeKthH(K1, B, L, O). 
 
-union(S1, S2, X) :- append(S1, S2,R),
-		addVals(R, [], X).
+union(S1, S2, X) :- append(S1, S2, R),
+		addVals(R, [], X1), append([], X1,X).
 
-addVals([], _, _).
+addVals([], S, R) :- append(S, [], R).
 addVals([H|L], S, R) :- \+ checkVal(S,H), 
 		append(S,[H],S1),
-		R1 = S1,
-		addVals(L, S1, R1).
+		addVals(L, S1, R).
 addVals([H|L], S, R) :- checkVal(S,H), 
 		addVals(L, S, R).
 
 
-checkVal([H|_],V) :- H =:= V.
-checkVal([H|L],V) :- H =\= V, checkVal(L,V).
+checkVal([H|_],V) :- H == V.
+checkVal([H|L],V) :- H \= V, checkVal(L,V).
 
 
 quad(A, B, C, R):- Sqrt is sqrt(B*B - 4*A*C),
