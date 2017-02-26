@@ -6,13 +6,27 @@ isSorted([H|[L|T]]) :- H =< L, isSorted([L|T]).
 
 removeKth(K,L,O) :- removeKthH(K,[],L,O).
 removeKthH(1, A, [_|T], O) :- append(A, T, O).
-		%removeKthH(0, A, T, D) . 
 removeKthH(K, A, [H|L], O) :- K > 1,
 		append(A,[H],B),	
 		K1 is K-1, 
 		removeKthH(K1, B, L, O). 
 
-union(S1, S2, []).
+union(S1, S2, X) :- append(S1, S2,R),
+		addVals(R, [], X).
+
+addVals([], _, _).
+addVals([H|L], S, R) :- \+ checkVal(S,H), 
+		append(S,[H],S1),
+		R1 = S1,
+		addVals(L, S1, R1).
+addVals([H|L], S, R) :- checkVal(S,H), 
+		addVals(L, S, R).
+
+
+checkVal([H|_],V) :- H =:= V.
+checkVal([H|L],V) :- H =\= V, checkVal(L,V).
+
+
 
 quad(A, B, C, [1, 2]).
 
