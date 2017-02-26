@@ -38,8 +38,7 @@ zip([H1|L1], [H|L], R, O) :- append([H1],[H], A),
 
 binaryLists(Zeros, Ones, O) :- append([Zeros], [Ones], O).
 
-unique(L, O) :- union(L,[],O).
-
+unique([H], O). 
 % Note, the edges are bidirectional.
 % If new cities are added, or connections are created, I will add the appropriate
 % adj(*,*) relationships (but I will not change anything else in your code.
