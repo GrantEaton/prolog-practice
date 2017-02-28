@@ -36,7 +36,12 @@ zip([H1|L1], [H|L], R, O) :- append([H1],[H], A),
 		append( R, [A], R1),
 		zip(L1,L,R1,O).
 
-binaryLists(Zeros, Ones, O) :- append([Zeros], [Ones], O).
+binaryLists(Z,O,L) :- binaryLists(Z,O,R,L).
+binaryLists(Z,O,R,L) :- Z == 0, O == 0, append([], R, L).
+binaryLists(Z,O,R,L) :- Z > 0, append(R,[0],R1), Z1 is Z-1, binaryLists(Z1,O,R1,L).
+binaryLists(Z,O,R,L) :- O > 0, append(R,[1],R1), O1 is O-1, binaryLists(Z,O1,R1,L).
+
+
 
 unique([H], O). 
 % Note, the edges are bidirectional.
