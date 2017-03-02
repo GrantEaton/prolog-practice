@@ -41,7 +41,7 @@ zip([H1|L1], [H|L], R, O) :- append([H1],[H], A),
 		append( R, [A], R1),
 		zip(L1,L,R1,O).
 
-binaryLists(Z,O,L) :- binaryLists(Z,O,R,L).
+binaryLists(Z,O,L) :- binaryLists(Z,O,_,L).
 binaryLists(Z,O,R,L) :- Z == 0,
 		O == 0,
 		append([], R, L).
@@ -54,7 +54,7 @@ binaryLists(Z,O,R,L) :- O > 0,
 		O1 is O-1,
 		binaryLists(Z,O1,R1,L).
 
-unique(L, O) :- unique(L, R, O). 
+unique(L, O) :- unique(L, _, O). 
 unique([],_,O) :- append([],[],O).
 unique([H],R,O) :- append(R,[H],R1), append(R1, [], O).
 unique([H|[H1|T]], R, O) :-H == H1,
