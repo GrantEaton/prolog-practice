@@ -81,4 +81,12 @@ adj(houston, dallas).
 adj(houston, sanantonio).
 adj(dallas, sanantonio).
 
-canReach(StartCity, EndCity).
+canReach(S,E) :- canReach(S,[],E).
+canReach(S,_,E) :- adj(S,E).
+canReach(S,_,E) :- adj(E,S).
+canReach(S,L,E) :- adj(X,S), \+checkVal(L,X), append(L,S,L1), canReach(X,L1,E).
+canReach(S,L,E) :- adj(S,X), \+checkVal(L,X), append(L,S,L1), canReach(X,L1,E).
+
+
+
+
