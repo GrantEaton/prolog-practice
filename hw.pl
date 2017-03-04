@@ -5,7 +5,6 @@ isSorted([_]).
 isSorted([H|[L|T]]) :- H =< L,
 		isSorted([L|T]).
 
-removeKth(K,L,O) :- removeKthH(K,[],L,O).
 removeKthH(1, A, [_|T], O) :- append(A, T, O).
 removeKthH(K, A, [H|L], O) :- K > 1,
 		append(A,[H],B),	
@@ -35,12 +34,25 @@ quad(A, B, C, R):- Sqrt is sqrt(B*B - 4*A*C),
 
 
 zip(L1, L, O) :- zip(L, L1, [], O). 
-zip([H1], [H], R, O) :- append([H1],[H],Z),
+zip([H1], [H], R, O) :- append([H],[H1],Z),
 		append(R,[Z], O).
-zip([H1|L1], [H|L], R, O) :- append([H1],[H], A),
+zip([H1|L1], [H|L], R, O) :- append([H],[H1], A),
 		append( R, [A], R1),
 		zip(L1,L,R1,O).
 
+binaryLists(0, 0, L) :- append([], [], L).
+binaryLists(Z, O, L) :- 
+		Z > 0,
+		Z1 is Z-1,
+		binaryLists(Z1, O, L1),
+		append([0],L1,L).
+binaryLists(Z, O, L) :-
+		O > 0,
+		O1 is O - 1,
+		binaryLists(Z, O1, L1),
+		append([1], L1, L). 
+/*
+% Binarylists function that would only print 1 possible option, not all. 
 binaryLists(Z,O,L) :- binaryLists(Z,O,_,L).
 binaryLists(Z,O,R,L) :- Z == 0,
 		O == 0,
@@ -53,6 +65,7 @@ binaryLists(Z,O,R,L) :- O > 0,
 		append(R,[1],R1),
 		O1 is O-1,
 		binaryLists(Z,O1,R1,L).
+*/
 
 unique(L, O) :- unique(L, _, O). 
 unique([],_,O) :- append([],[],O).
@@ -86,7 +99,5 @@ canReach(S,_,E) :- adj(S,E).
 canReach(S,_,E) :- adj(E,S).
 canReach(S,L,E) :- adj(X,S), \+checkVal(L,X), append(L,S,L1), canReach(X,L1,E).
 canReach(S,L,E) :- adj(S,X), \+checkVal(L,X), append(L,S,L1), canReach(X,L1,E).
-
-
 
 
