@@ -5,6 +5,7 @@ isSorted([_]).
 isSorted([H|[L|T]]) :- H =< L,
 		isSorted([L|T]).
 
+removeKth(K,L,O) :- removeKthH(K,[],L,O).
 removeKthH(1, A, [_|T], O) :- append(A, T, O).
 removeKthH(K, A, [H|L], O) :- K > 1,
 		append(A,[H],B),	
