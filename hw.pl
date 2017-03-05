@@ -101,4 +101,13 @@ canReach(S,_,E) :- adj(E,S).
 canReach(S,L,E) :- adj(X,S), \+checkVal(L,X), append(L,S,L1), canReach(X,L1,E).
 canReach(S,L,E) :- adj(S,X), \+checkVal(L,X), append(L,S,L1), canReach(X,L1,E).
 
+% prolog function to get length of list
+len(X,L) :- len(X,0,L).
+len([],M,L) :- L is M.
+len([H|T],M,L) :- M1 is M+1, len(T,M1,L).
+
+
+secLast([H|T],L) :- secLast(X,[],L).
+secLast([H],M,L) :- L is M.
+secLast([H|T],M,L) :- M1 is H, secLast(T,M1,L).
 
